@@ -1,14 +1,27 @@
 return {
   "nvim-neo-tree/neo-tree.nvim",
-  opts = {
+  keys = {
+    {
+      "<leader>fe",
+      function()
+        require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() })
+      end,
+      desc = "Explorer NeoTree (root dir)",
+    },
+    {
+      "<leader>fE",
+      function()
+        require("neo-tree.command").execute({ toggle = true, dir = Util.root() })
+      end,
+      desc = "Explorer NeoTree (cwd)",
+    },
+  },
+  config = {
     window = {
+      position = "right",
       mappings = {
         ["l"] = "open",
       },
     },
-  },
-  keys = {
-    { "<leader>e", "<cmd>Neotree toggle<cr>" },
-    { "<leader>E", false },
   },
 }
